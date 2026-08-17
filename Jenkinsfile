@@ -3,11 +3,15 @@ pipeline {
     agent {
         label 'Roboshop'
     }
+    environment {
+        name = "Manoj"
+    }
 
     stages {
         stage('Build') {
             steps {
                 echo 'Building your application...'
+                echo "My name is ${name}"
                 // Example: sh 'mvn clean package' (for Java apps)
             }
         }
