@@ -6,12 +6,18 @@ pipeline {
     environment {
         name = "Manoj"
     }
+    options {
+        disableConcurrentBuilds()
+        timestamps()
+        timeout(time: 10, unit: 'MINUTES')
+    }
 
     stages {
         stage('Build') {
             steps {
                 echo 'Building your application...'
                 echo "My name is ${name}"
+                sleep 5
                 // Example: sh 'mvn clean package' (for Java apps)
             }
         }
