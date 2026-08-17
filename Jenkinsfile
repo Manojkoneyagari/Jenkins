@@ -1,6 +1,8 @@
 pipeline {
     // Defines where the automation will execute (any available runner/node)
-    agent any 
+    agent {
+        label 'Roboshop'
+    }
 
     stages {
         stage('Build') {
@@ -12,7 +14,7 @@ pipeline {
         
         stage('Test') {
             steps {
-                echo 'Running unit tests...'
+                echo 'Running unit tests... with agent'
                 // Example: sh 'npm test' (for NodeJs apps)
             }
         }
@@ -25,7 +27,7 @@ pipeline {
         }
     }
     
-    
+
     post {
         always {
             echo 'Pipeline has finished executing.'
