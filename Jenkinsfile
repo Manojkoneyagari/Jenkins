@@ -17,9 +17,9 @@ pipeline {
         
         choice(name: 'ENVIRONMENT', choices: ['dev', 'qa', 'prod'], description: 'Select environment')
 
-        booleanParam(name: 'RUN_TESTS', defaultValue: true, description: 'Run tests?')
+        booleanParam(name: 'TESTS', defaultValue: true, description: 'Run tests?')
 
-        password( name: 'PASSWORD', defaultValue: '', description: 'Enter password')
+        password(name: 'PASSWORD', defaultValue: '', description: 'Enter password')
     }
 
     stages {
@@ -35,6 +35,17 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Running unit tests... with agent'
+                // Example: sh 'npm test' (for NodeJs apps)
+            }
+        }
+
+         stage('Accessing parmeters') {
+            steps {
+                echo 'Accessing paramters'
+                echo " Version is : ${params.VERSION}"
+                echo " Environment is : ${params.ENVIRONMENT}"
+                echo "Tests selected : ${params.TESTS}"
+                echo " password secret is : ${params.PASSWORD}"
                 // Example: sh 'npm test' (for NodeJs apps)
             }
         }
