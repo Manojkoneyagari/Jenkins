@@ -12,6 +12,16 @@ pipeline {
         timeout(time: 10, unit: 'MINUTES')
     }
 
+    parameters {
+        string(name: 'VERSION', defaultValue: '1.0', description: 'Enter application version')
+        
+        choice(name: 'ENVIRONMENT', choices: ['dev', 'qa', 'prod'], description: 'Select environment')
+
+        booleanParam(name: 'RUN_TESTS', defaultValue: true, description: 'Run tests?')
+
+        password( name: 'PASSWORD', defaultValue: '', description: 'Enter password')
+    }
+
     stages {
         stage('Build') {
             steps {
